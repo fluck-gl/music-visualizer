@@ -1,3 +1,4 @@
+
 function castle() {
 
   this.displayCastle = function() {
@@ -117,14 +118,37 @@ function newSideWallBox (x,y,z) {
                       width: 25,
                       height:30,
                       depth: 5,
-                      red: random(255),
-                     green: random(255),
-                     blue: random(255)
+                      asset: stonebrick
                       });
   box.spinY(90);
   // add the entity to the world
   world.add( box );
 }
+
+
+var door1 = new Plane({
+                      x: -5,
+                      y: -20,
+                      z: 15,
+                      asset: 'doorLeft',
+                      side: 'double',
+                      height: 15,
+                      width: 5,
+
+
+                      clickFunction: function(thePlane) {
+                                if (rotated1 == 0) {
+                                  thePlane.rotateY(90);
+                                  doorOpen.play();
+                                  rotated1 = 1;
+                                } else if (rotated1 == 1) {
+                                  thePlane.rotateY(0);
+                                  doorClose.play();
+                                  rotated1 = 0;
+                                }
+                             }
+
+                      });
 
 //build 3 box high columns
 function build4Column(x,y,z) {
