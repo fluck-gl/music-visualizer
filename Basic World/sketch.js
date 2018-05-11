@@ -82,7 +82,7 @@ function setup() {
 
 function draw() {
   if (mouseIsPressed || touchIsDown) {
-		world.moveUserForward(0.1);
+		world.moveUserForward(0.3);
 	}
 
 	//container.spinY(1);
