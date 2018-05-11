@@ -16,8 +16,14 @@ var spaceship;
 
 var container;
 
+function preload() {
+   stonebrick = loadImage("images/stonebrick.png");
+}
+
 function setup() {
   noCanvas();
+
+
 
   world = new World('VRScene');
   theCastle = new castle();
