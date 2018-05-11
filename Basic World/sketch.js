@@ -16,7 +16,9 @@ var spaceship;
 
 var container;
 
-var tree1, tree2, tree3, tree4, corner;
+var tree1, tree2, tree3, tree4, corner, dog, courage, horse;
+
+var balloons1, balloons2, balloons3, balloons4,ballonsd;
 
 function setup() {
   noCanvas();
@@ -41,6 +43,86 @@ function setup() {
 
   // add the plane to the world
   world.add(floor);
+
+/*
+  courage = new DAE({
+      asset: 'courg',
+      scaleX:5,
+      scaleY:5,
+      scaleZ:5
+  });
+  world.add(courage);
+
+
+  horse = new DAE({
+      asset: 'horse_dae',
+      scaleX:5,
+      scaleY:5,
+      scaleZ:5
+  });
+  world.add(horse);
+  */
+
+/*
+  ballonsd = new DAE({
+      asset: 'balloon_dae',
+      scaleX:5.0,
+      scaleY:5.0,
+      scaleZ:5.0,
+  });
+  world.add(ballonsd);
+*/
+  balloons1 = new OBJ({
+      asset: 'balloon_obj',
+      mtl: 'balloon_mtl',
+      x: 10,
+      y: -10,
+      z: -10,
+      red: 250,
+      scaleX:3,
+      scaleY:3,
+      scaleZ:3,
+  });
+  world.add(balloons1);
+
+  balloons2 = new OBJ({
+      asset: 'balloon_obj',
+      mtl: 'balloon_mtl',
+      x: -15,
+      y: -10,
+      z: -10,
+      red: 250,
+      scaleX:3,
+      scaleY:3,
+      scaleZ:3,
+  });
+  world.add(balloons2);
+
+  balloons3 = new OBJ({
+      asset: 'balloon_obj',
+      mtl: 'balloon_mtl',
+      x: 10,
+      y: -10,
+      z: 15,
+      red: 250,
+      scaleX:3,
+      scaleY:3,
+      scaleZ:3,
+  });
+  world.add(balloons3);
+
+  balloons4 = new OBJ({
+      asset: 'balloon_obj',
+      mtl: 'balloon_mtl',
+      x: -15,
+      y: -10,
+      z: 15,
+      red: 250,
+      scaleX:3,
+      scaleY:3,
+      scaleZ:3,
+  });
+  world.add(balloons4);
 
   tree1 = new OBJ({
       asset: 'tree_obj',
@@ -89,6 +171,21 @@ function setup() {
       scaleZ:1,
   });
   world.add(tree4);
+
+  dog = new OBJ({
+      asset: 'dog_obj',
+      mtl: 'dog_mtl',
+      x: 25,
+      y: -30,
+      z: 5,
+      red: 139,
+      green: 80,
+      blue: 14,
+      scaleX:5,
+      scaleY:5,
+      scaleZ:5,
+  });
+  world.add(dog);
 
 }
 
