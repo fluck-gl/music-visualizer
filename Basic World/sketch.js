@@ -16,6 +16,8 @@ var spaceship;
 
 var container;
 
+var tree1, tree2, tree3, tree4, corner;
+
 function setup() {
   noCanvas();
 
@@ -40,6 +42,53 @@ function setup() {
   // add the plane to the world
   world.add(floor);
 
+  tree1 = new OBJ({
+      asset: 'tree_obj',
+      mtl: 'tree_mtl',
+      x: 35,
+      y: -30,
+      z: -35,
+      scaleX:1,
+      scaleY:1,
+      scaleZ:1,
+  });
+  world.add(tree1);
+
+  tree2 = new OBJ({
+      asset: 'tree_obj',
+      mtl: 'tree_mtl',
+      x: 35,
+      y: -30,
+      z: 35,
+      scaleX:1,
+      scaleY:1,
+      scaleZ:1,
+  });
+  world.add(tree2);
+
+  tree3 = new OBJ({
+      asset: 'tree_obj',
+      mtl: 'tree_mtl',
+      x: -35,
+      y: -30,
+      z: 35,
+      scaleX:1,
+      scaleY:1,
+      scaleZ:1,
+  });
+  world.add(tree3);
+
+  tree4 = new OBJ({
+      asset: 'tree_obj',
+      mtl: 'tree_mtl',
+      x: -35,
+      y: -30,
+      z: -35,
+      scaleX:1,
+      scaleY:1,
+      scaleZ:1,
+  });
+  world.add(tree4);
 
 }
 
