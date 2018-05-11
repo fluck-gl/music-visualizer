@@ -16,6 +16,8 @@ var spaceship;
 
 var container;
 
+var tree, corner;
+
 function preload() {
    stonebrick = loadImage("images/stonebrick.png");
 }
@@ -26,6 +28,7 @@ function setup() {
 
 
   world = new World('VRScene');
+
   theCastle = new castle();
 
   // doorOpen = loadSound("sounds/open_door.mp3");
@@ -47,7 +50,26 @@ function setup() {
   world.add(plane1);
 
 
+  tree = new OBJ({
+      asset: 'tree_obj',
+      mtl: 'tree_mtl',
+      x: 20,
+      y: -30,
+      z: 10,
+  });
+  world.add(tree);
 
+  corner = new OBJ({
+      asset: 'corner_obj',
+      mtl: 'corner_mtl',
+      x: 40,
+      y: -30,
+      z: 10,
+      scaleX:1.5,
+      scaleY:1.5,
+      scaleZ:1.5,
+  });
+    world.add(corner);
 
   //this is not working in p5, only in chrome.
   // // spaceship = new OBJ({
@@ -108,6 +130,8 @@ function draw() {
   			i-=1;
   		}
   	}
+
+    tree.spinY(1);
 
 }
 
