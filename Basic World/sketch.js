@@ -16,17 +16,10 @@ var spaceship;
 
 var container;
 
-var tree, corner;
-
-function preload() {
-   stonebrick = loadImage("images/stonebrick.png");
-}
-
 function setup() {
   noCanvas();
 
   world = new World('VRScene');
-
   theCastle = new castle();
 
   // doorOpen = loadSound("sounds/open_door.mp3");
@@ -35,7 +28,7 @@ function setup() {
   theCastle.displayCastle();
 
   // create a plane entity.
-  var plane1 = new Plane({
+  var floor = new Plane({
                            x:0, y:-30, z:0,
          						width:80, height:80,
          						red: 19,
@@ -45,64 +38,8 @@ function setup() {
                         });
 
   // add the plane to the world
-  world.add(plane1);
+  world.add(floor);
 
-
-  tree = new OBJ({
-      asset: 'tree_obj',
-      mtl: 'tree_mtl',
-      x: 20,
-      y: -30,
-      z: 10,
-  });
-  world.add(tree);
-
-  corner = new OBJ({
-      asset: 'corner_obj',
-      mtl: 'corner_mtl',
-      x: 40,
-      y: -30,
-      z: 10,
-      scaleX:1.5,
-      scaleY:1.5,
-      scaleZ:1.5,
-  });
-    world.add(corner);
-
-  //this is not working in p5, only in chrome.
-  // // spaceship = new OBJ({
-  // //             asset: 'booster_obj',
-  // //             mtl: 'booster_mtl',
-  // //             x: 0,
-  // //           	y: 0,
-  // //           	z: -10,
-  // //           	rotationY: 90,
-  // //             scaleX:.05,
-  // //             scaleY:.05,
-	// // 	          scaleZ:.05,
-  // // });
-  // // world.add(spaceship);
-  //
-  //
-	// container = new Container3D({x:0, y:1, z:-5});
-  //
-	// world.add(container);
-  //
-	// var s1 = new Sphere({
-	// 					x:-5, y:0, z:0,
-	// 					red: random(255), green:random(255), blue:random(255)
-	// });
-  //
-	// container.addChild(s1);
-  //
-	// var s2 = new Sphere({
-	// 					x:5, y:0, z:0,
-	// 					red: random(255), green:random(255), blue:random(255)
-	// });
-  //
-	// container.addChild(s2);
-  //
-	// container.addChild(spaceship);
 
 }
 
@@ -128,8 +65,6 @@ function draw() {
   			i-=1;
   		}
   	}
-
-    tree.spinY(1);
 
 }
 

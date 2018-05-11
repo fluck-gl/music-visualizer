@@ -26,47 +26,87 @@ function castle() {
   }
 }
 
-var mySound;
-function preload(){
-mySound = loadSound('sounds/Maroon5_this_love.mp3');
-}
-function mouseClicked() {
-mySound.play();
-}
-function keyPressed() {
-mySound.play();
-}
-
-
-
 //far
 function wall1() {
-   newWallBox(-5,-25, -10);
-   
-clickFunction: function(wall1) {
-mySound = loadSound('sounds/Maroon5_this_love.mp3');
-}
-function setup() {
-mySound.setVolume(0.1);
-mySound.play();
-}
+   var box = new Box({
+                       x:-5,
+                       y:-25,
+                       z:-10,
+                       width: 25,
+                       height:30,
+                       depth: 5,
+                       asset: 'stonebrick',
+                       repeatX: 20,
+                       repeatY: 20,
 
+                       });
+   world.add( box );
+   var plane1 = new Plane({
+                            x:0, y:-25, z:-7.4,
+          						 width:25, height:30,
+          						 red: 255,
+                            green: 255,
+                            blue: 255,
+
+                            clickFunction: function(thePlane) {
+                               thePlane.setColor(192, 232, 249);
+                            }
+                         });
+
+   // add the plane to the world
+   world.add(plane1);
 }
 
 //right
 function wall2() {
-   newSideWallBox(10,-25, 5);
+   var box = new Box({
+                       x: 10,
+                       y: -25,
+                       z: 5,
+                       width: 25,
+                       height:30,
+                       depth: 5,
+                       asset: 'stonebrick',
+                       repeatX: 20,
+                       repeatY: 20,
+                       });
+   box.spinY(90);
+   world.add( box );
 
 }
 
 //left
 function wall3() {
-   newSideWallBox(-15,-25, 5)
+   var box = new Box({
+                       x: -15,
+                       y: -25,
+                       z: 5,
+                       width: 25,
+                       height:30,
+                       depth: 5,
+                       asset: 'stonebrick',
+                       repeatX: 20,
+                       repeatY: 20,
+                       });
+   box.spinY(90);
+   world.add( box );
 }
 
 //close
 function wall4() {
-   newWallBox(0,-25, 15)
+   var box = new Box({
+                       x:0,
+                       y:-25,
+                       z:15,
+                       width: 25,
+                       height:30,
+                       depth: 5,
+                       asset: 'stonebrick',
+                       repeatX: 20,
+                       repeatY: 20,
+
+                       });
+   world.add( box );
 }
 
 //create a 5x5x5 box object
