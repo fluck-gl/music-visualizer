@@ -16,14 +16,8 @@ var spaceship;
 
 var container;
 
-function preload() {
-   stonebrick = loadImage("images/stonebrick.png");
-}
-
 function setup() {
   noCanvas();
-
-
 
   world = new World('VRScene');
   theCastle = new castle();
@@ -35,12 +29,12 @@ function setup() {
 
   // create a plane entity.
   var plane1 = new Plane({
-                        x:0, y:-30, z:0,
-            						width:100, height:100,
-            						asset: 'stonebrick',
-            						repeatX: 100,
-            						repeatY: 100,
-            						rotationX:-90
+                           x:0, y:-30, z:0,
+         						width:80, height:80,
+         						red: 19,
+                           green: 64,
+                           blue: 116,
+         						rotationX:-90
                         });
 
   // add the plane to the world
