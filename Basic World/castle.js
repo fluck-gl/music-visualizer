@@ -5,30 +5,16 @@ function castle() {
     //front row
     addCone (10,-5,-10);
     addCylinder(10,-25,-10);
-    //build4Column(10,-25, -10); //rightmost corner
-    // build4Column(5,-25, -10);
-    // build4Column(0,-25, -10);
-    // build4Column(-5,-25, -10);
-    // build4Column(-10,-25, -10);
-    //build4Column(-15,-25, -10); //leftmost corner
+
+    //back row
     addCone (-15,-5,-10);
     addCylinder(-15,-25,-10);
 
     //right row
-    // build4Column(10,-25, -5);
-    // build4Column(10,-25, 0);
-    // build4Column(10,-25, 5);
-    // build4Column(10,-25, 10);
-    //build4Column(10,-25, 15); //back rightmost corner
     addCone (10,-5,15);
     addCylinder(10,-25,15);
 
     //left row
-    // build4Column(-15,-25, -5);
-    // build4Column(-15,-25, 0);
-    // build4Column(-15,-25, 5);
-    // build4Column(-15,-25, 10);
-    //build4Column(-15,-25, 15); //back leftmost corner
     addCone (-15,-5,15);
     addCylinder(-15,-25,15);
 
@@ -37,12 +23,6 @@ function castle() {
     wall3();
     wall4();
 
-    //back row
-    //build4Column(-10,-25, 15);
-
-    //build4Column(5,-25, 15); //end back row
-
-    fountain();
   }
 }
 
@@ -98,9 +78,9 @@ function newWallBox (x,y,z) {
                       width: 25,
                       height:30,
                       depth: 5,
-                      red: random(255),
-                     green: random(255),
-                     blue: random(255)
+                      asset: 'stonebrick',
+                      repeatX: 20,
+                      repeatY: 20,
 
                       });
 
@@ -118,7 +98,9 @@ function newSideWallBox (x,y,z) {
                       width: 25,
                       height:30,
                       depth: 5,
-                      asset: stonebrick
+                      asset: 'stonebrick',
+                      repeatX: 20,
+                      repeatY: 20,
                       });
   box.spinY(90);
   // add the entity to the world
@@ -170,9 +152,9 @@ function addCone (x,y,z) {
 						x:x , y:y, z:z,
 						height:5,
 						radiusBottom: 5, radiusTop: 0.25,
-						red: random(255),
-            green: random(255),
-            blue: random(255)
+						red: 96,
+                  green: 101,
+                  blue: 111
 					});
 	world.add(co);
 }
@@ -184,9 +166,9 @@ function addCylinder(x,y,z) {
 						x:x , y:y, z:z,
 						height:35,
 						radius: 4.5,
-						red: random(255),
-            green: random(255),
-            blue: random(255)
+						red: 25,
+                  green: 29,
+                  blue: 50
 					});
 	world.add(cl);
 }
@@ -202,12 +184,4 @@ function addSphere(x,y,z) {
             blue: random(255)
 					});
 	world.add(c);
-}
-
-function fountain() {
-
-  addSphere(0,-20, 0);
-  addSphere(0,-20, 5);
-  addSphere(-5,-20, 0);
-  addSphere(-5,-20, 5);
 }
