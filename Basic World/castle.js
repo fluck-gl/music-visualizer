@@ -26,9 +26,31 @@ function castle() {
   }
 }
 
+var mySound;
+function preload(){
+mySound = loadSound('sounds/Maroon5_this_love.mp3');
+}
+function mouseClicked() {
+mySound.play();
+}
+function keyPressed() {
+mySound.play();
+}
+
+
+
 //far
 function wall1() {
    newWallBox(-5,-25, -10);
+   
+clickFunction: function(wall1) {
+mySound = loadSound('sounds/Maroon5_this_love.mp3');
+}
+function setup() {
+mySound.setVolume(0.1);
+mySound.play();
+}
+
 }
 
 //right
