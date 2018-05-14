@@ -153,7 +153,7 @@ function wall4() {
    plane.spinY(180);
    world.add(plane);
 }
-
+/*
 var door1 = new Plane({
                       x: -5,
                       y: -20,
@@ -177,6 +177,7 @@ var door1 = new Plane({
                              }
 
                       });
+*/
 
 //build 3 box high columns
 function build4Column(x,y,z) {

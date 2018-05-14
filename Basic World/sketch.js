@@ -9,6 +9,9 @@ var circle1, circle2;
 var x,y,z;
 
 var amp;
+let song1;
+
+let volHist;
 
 var container;
 
@@ -16,19 +19,16 @@ var tree1, tree2, tree3, tree4, corner, dog, courage, horse;
 
 var balloons1, balloons2, balloons3, balloons4,ballonsd;
 
-function preLoad() {
-    song1 = loadSound("sounds/Maroon5_this_love.mp3");
-}
+
 
 function setup() {
   noCanvas();
-  
-  console.log("this works")
-// song1 = loadSound("sounds/Maroon5_this_love.mp3");
-// console.log("it breaks here?" , loadSound("sounds/Maroon5_this_love.mp3"))
 
+  console.log("this works");
+  song1 = loadSound("sounds/Maroon5_this_love.mp3");
   amp = new p5.Amplitude();
- // img = loadImage("images/lillith.png");
+  song1.stop();
+
 
   world = new World('VRScene');
   theVisualizer1 = new viz(song1);
@@ -196,11 +196,25 @@ function setup() {
   world.add(dog);
 
 }
+//
+// function mouseClicked() {
+//
+// }
+// var mouseClicked = false;
+function mouseClicked() {
+    if(song1.isPlaying()) {
+      song1.stop();
+    } else {
+      song1.play();
+    }
+  }
+
 
 function draw() {
   if (mouseIsPressed || touchIsDown) {
 		world.moveUserForward(0.3);
 	}
+
 
 	//container.spinY(1);
 
@@ -220,6 +234,35 @@ function draw() {
   		}
   	}
 
+
+    vol = amp.getLevel() * tan(random(255));
+    volHist.push(vol);
+
+
+    if(song.isPlaying()) {
+
+      translate(width / 2, height /2);
+
+      // this is the 'shape' or the actual visualiztion
+      beginShape();
+
+      // 360 b/c our math mode is set to DEGREES
+      for (let i = 0; i < 360; i++) {
+          stroke(255, random(255), 255);
+          fill(255, .8)
+        r = map(volHist[i], 0, 1, 10, height);
+        let x = r * cos(i);
+        let y = r * sin(i);
+        vertex(x, y);
+      }
+
+      if (volHist.length > 360) {
+        volHist.splice(0, 1);
+      }
+      endShape();
+
+  }
+
 }
 
 function Rain(x,y,z) {
@@ -230,7 +273,6 @@ function Rain(x,y,z) {
 							red: 0, green:0, blue:255,
 							radius: 0.5
 	});
-
 	// add the Sphere to the world
 	world.add(this.mySphere);
 
@@ -241,7 +283,9 @@ function Rain(x,y,z) {
 	// function to move our sphere
 	this.move = function() {
 
-		var yMovement = amp.getLevel() * -.2;
+		var yMovement = -.2;
+
+    //  amp.getLevel() *
 
 		// the rain should randomly move in the x & z directions
 		var xMovement = map( noise(this.xOffset), 0, 1, -0.05, 0.05);
