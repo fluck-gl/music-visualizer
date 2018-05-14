@@ -1,4 +1,4 @@
-var world, theCastle;
+var world, theCastle, theVisualizer;
 
 var theRain = [];
 
@@ -8,11 +8,7 @@ var circle1, circle2;
 
 var x,y,z;
 
-var rotated1, rotated2;
-
-var doorOpen, doorClose;
-
-var spaceship;
+var amp;
 
 var container;
 
@@ -22,8 +18,13 @@ var balloons1, balloons2, balloons3, balloons4,ballonsd;
 
 function setup() {
   noCanvas();
+  
+song1 = loadSound("sounds/Maroon5_this_love.mp3", theVisualizer.loaded);
+  amp = new p5.Amplitude();
+ // img = loadImage("images/lillith.png");
 
   world = new World('VRScene');
+  theVisualizer1 = new viz( song1);
   theCastle = new castle();
 
   // doorOpen = loadSound("sounds/open_door.mp3");
@@ -199,9 +200,9 @@ function draw() {
   // always create a new particle
 	var temp = new Rain(-2.5, 0, 2.5);
 
-	if (frameCount % 15 == 0) {
+	if (frameCount % 30 == 0) {
   	// add to array
-  	theRain.push( temp );
+  	   theRain.push( temp );
 	}
   	// draw all rain
   	for (var i = 0; i < theRain.length; i++) {
@@ -213,8 +214,6 @@ function draw() {
   	}
 
 }
-
-
 
 function Rain(x,y,z) {
 
@@ -235,7 +234,7 @@ function Rain(x,y,z) {
 	// function to move our sphere
 	this.move = function() {
 
-		var yMovement = -0.1;
+		var yMovement = amp.getLevel() * -.2;
 
 		// the rain should randomly move in the x & z directions
 		var xMovement = map( noise(this.xOffset), 0, 1, -0.05, 0.05);

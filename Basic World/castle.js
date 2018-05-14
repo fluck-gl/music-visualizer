@@ -2,25 +2,25 @@
 function castle() {
 
   this.displayCastle = function() {
-    //front row
+
+    //build corner towers
     addCone (10,-5,-10);
     addCylinder(10,-25,-10);
-
-    //back row
     addCone (-15,-5,-10);
     addCylinder(-15,-25,-10);
-
-    //right row
     addCone (10,-5,15);
     addCylinder(10,-25,15);
-
-    //left row
     addCone (-15,-5,15);
     addCylinder(-15,-25,15);
 
+    //build walls and planes for visualiztion
+    //front
     wall1();
+    //left
     wall2();
+    //right
     wall3();
+    //behind
     wall4();
 
   }
@@ -41,20 +41,20 @@ function wall1() {
 
                        });
    world.add( box );
-   var plane1 = new Plane({
+   var plane = new Plane({
                             x:0, y:-25, z:-7.4,
-          						 width:25, height:30,
-          						 red: 255,
+          					width:25, height:30,
+          					red: 255,
                             green: 255,
                             blue: 255,
 
                             clickFunction: function(thePlane) {
-                               thePlane.setColor(192, 232, 249);
+                               thePlane.theVisualizer1.vizualizer(song1, image);
                             }
                          });
 
    // add the plane to the world
-   world.add(plane1);
+   world.add(plane);
 }
 
 //right
@@ -72,6 +72,21 @@ function wall2() {
                        });
    box.spinY(90);
    world.add( box );
+   var plane = new Plane({
+                            x:7.4, y:-25, z:5,
+          						 width:25, height:30,
+          						 red: 255,
+                            green: 255,
+                            blue: 255,
+
+                            clickFunction: function(thePlane) {
+                               thePlane.setColor(192, 232, 249);
+                            }
+                         });
+
+   // add the plane to the world
+   plane.spinY(270);
+   world.add(plane);
 
 }
 
@@ -90,6 +105,21 @@ function wall3() {
                        });
    box.spinY(90);
    world.add( box );
+   var plane = new Plane({
+                            x:-12.4, y:-25, z:5,
+          						 width:25, height:30,
+          						 red: 255,
+                            green: 255,
+                            blue: 255,
+
+                            clickFunction: function(thePlane) {
+                               thePlane.setColor(192, 232, 249);
+                            }
+                         });
+
+   // add the plane to the world
+   plane.spinY(90);
+   world.add(plane);
 }
 
 //close
@@ -107,68 +137,22 @@ function wall4() {
 
                        });
    world.add( box );
+   var plane = new Plane({
+                            x:0, y:-25, z:12.4,
+          						 width:25, height:30,
+          						 red: 255,
+                            green: 255,
+                            blue: 255,
+
+                            clickFunction: function(thePlane) {
+                               thePlane.setColor(192, 232, 249);
+                            }
+                         });
+
+   // add the plane to the world
+   plane.spinY(180);
+   world.add(plane);
 }
-
-//create a 5x5x5 box object
-function newBox (x,y,z) {
-
-   // create a box entity.  entities take arguments in the form of an Object
-  var box = new Box({
-                      x:x,
-                      y:y,
-                      z:z,
-                      width: 5,
-                      height:5,
-                      depth: 5,
-                      red: random(255),
-                     green: random(255),
-                     blue: random(255)
-
-                      });
-
-  // add the entity to the world
-  world.add( box );
-}
-
-function newWallBox (x,y,z) {
-
-   // create a box entity.  entities take arguments in the form of an Object
-  var box = new Box({
-                      x:x,
-                      y:y,
-                      z:z,
-                      width: 25,
-                      height:30,
-                      depth: 5,
-                      asset: 'stonebrick',
-                      repeatX: 20,
-                      repeatY: 20,
-
-                      });
-
-  // add the entity to the world
-  world.add( box );
-}
-
-function newSideWallBox (x,y,z) {
-
-   // create a box entity.  entities take arguments in the form of an Object
-  var box = new Box({
-                      x:x,
-                      y:y,
-                      z:z,
-                      width: 25,
-                      height:30,
-                      depth: 5,
-                      asset: 'stonebrick',
-                      repeatX: 20,
-                      repeatY: 20,
-                      });
-  box.spinY(90);
-  // add the entity to the world
-  world.add( box );
-}
-
 
 var door1 = new Plane({
                       x: -5,

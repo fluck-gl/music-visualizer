@@ -8,7 +8,6 @@ let img;
 // global array contains 360 amplitude readings
 let volHist = [];
 
-
 function setup() {
   createCanvas(700, 700);
   background(255,0,255);
@@ -20,6 +19,8 @@ function setup() {
   img = loadImage("images/lillith.png");
 
 }
+
+
 
 
 
@@ -53,8 +54,6 @@ function draw() {
     endShape();
 
 }
-
-
 
 }
 
