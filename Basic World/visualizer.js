@@ -1,7 +1,6 @@
 let song;
 let button;
 let jump;
-let amp;
 let color;
 let img;
 

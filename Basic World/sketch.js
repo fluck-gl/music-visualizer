@@ -16,15 +16,22 @@ var tree1, tree2, tree3, tree4, corner, dog, courage, horse;
 
 var balloons1, balloons2, balloons3, balloons4,ballonsd;
 
+function preLoad() {
+    song1 = loadSound("sounds/Maroon5_this_love.mp3");
+}
+
 function setup() {
   noCanvas();
   
-song1 = loadSound("sounds/Maroon5_this_love.mp3", theVisualizer.loaded);
+  console.log("this works")
+// song1 = loadSound("sounds/Maroon5_this_love.mp3");
+// console.log("it breaks here?" , loadSound("sounds/Maroon5_this_love.mp3"))
+
   amp = new p5.Amplitude();
  // img = loadImage("images/lillith.png");
 
   world = new World('VRScene');
-  theVisualizer1 = new viz( song1);
+  theVisualizer1 = new viz(song1);
   theCastle = new castle();
 
   // doorOpen = loadSound("sounds/open_door.mp3");

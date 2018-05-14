@@ -49,7 +49,7 @@ function wall1() {
                             blue: 255,
 
                             clickFunction: function(thePlane) {
-                               thePlane.theVisualizer1.vizualizer(song1, image);
+                               //thePlane.theVisualizer1.vizualizer(song1, image);
                             }
                          });
 

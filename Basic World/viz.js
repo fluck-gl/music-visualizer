@@ -2,6 +2,18 @@ function viz(song) {
 
     this.song = song;
    this.volHist = [];
+   
+    var plane = new Plane({
+                            x:0, y:-5, z:-15,
+          					width:25, height:30,
+          					red: 255,
+                            green: 255,
+                            blue: 255,
+
+                            clickFunction: function(thePlane) {
+                               thePlane.setColor(100, 140, 50);
+                            }
+                         });
 
    this.background(255,0,255);
    this.angleMode(DEGREES);
