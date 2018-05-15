@@ -1,17 +1,15 @@
-var world, theCastle, theVisualizer;
+var world, theCastle;
 
 var theRain = [];
 
 var sky, stonebrick;
 
-var circle1, circle2;
-
 var x,y,z;
 
 var amp;
-let song1;
+var song1;
 
-let volHist;
+var volHist;
 
 var container;
 
@@ -19,19 +17,20 @@ var tree1, tree2, tree3, tree4, corner, dog, courage, horse;
 
 var balloons1, balloons2, balloons3, balloons4,ballonsd;
 
-
+function preload() {
+    song1 = loadSound("sounds/Maroon5_this_love.mp3");
+    song2 = loadSound("sounds/Back_in_black.mp3");
+    song3 = loadSound("sounds/yyz.mp3");
+    song4 = loadSound("sounds/We_Will_Rock_You.mp3");
+}
 
 function setup() {
   noCanvas();
 
-  console.log("this works");
-  song1 = loadSound("sounds/Maroon5_this_love.mp3");
   amp = new p5.Amplitude();
-  song1.stop();
 
 
   world = new World('VRScene');
-  theVisualizer1 = new viz(song1);
   theCastle = new castle();
 
   // doorOpen = loadSound("sounds/open_door.mp3");
@@ -51,35 +50,14 @@ function setup() {
 
   // add the plane to the world
   world.add(floor);
+  
+  container = new Container3D({x:-2.5, y:-10, z:2.5});
 
-/*
-  courage = new DAE({
-      asset: 'courg',
-      scaleX:5,
-      scaleY:5,
-      scaleZ:5
-  });
-  world.add(courage);
+	world.add(container);
+  
+newAmp = 1;
 
 
-  horse = new DAE({
-      asset: 'horse_dae',
-      scaleX:5,
-      scaleY:5,
-      scaleZ:5
-  });
-  world.add(horse);
-  */
-
-/*
-  ballonsd = new DAE({
-      asset: 'balloon_dae',
-      scaleX:5.0,
-      scaleY:5.0,
-      scaleZ:5.0,
-  });
-  world.add(ballonsd);
-*/
   balloons1 = new OBJ({
       asset: 'balloon_obj',
       mtl: 'balloon_mtl',
@@ -180,51 +158,46 @@ function setup() {
   });
   world.add(tree4);
 
-  dog = new OBJ({
-      asset: 'dog_obj',
-      mtl: 'dog_mtl',
-      x: 25,
-      y: -30,
-      z: 5,
-      red: 139,
-      green: 80,
-      blue: 14,
-      scaleX:5,
-      scaleY:5,
-      scaleZ:5,
-  });
-  world.add(dog);
+//   dog = new OBJ({
+//       asset: 'dog_obj',
+//       mtl: 'dog_mtl',
+//       x: 25,
+//       y: -30,
+//       z: 5,
+//       red: 139,
+//       green: 80,
+//       blue: 14,
+//       scaleX:5,
+//       scaleY:5,
+//       scaleZ:5,
+//   });
+//   world.add(dog);
 
 }
-//
-// function mouseClicked() {
-//
-// }
-// var mouseClicked = false;
-function mouseClicked() {
-    if(song1.isPlaying()) {
-      song1.stop();
-    } else {
-      song1.play();
-    }
-  }
 
 
 function draw() {
   if (mouseIsPressed || touchIsDown) {
-		world.moveUserForward(0.3);
+		world.moveUserForward(0.1);
 	}
-
-
-	//container.spinY(1);
+	
+	if (amp.getLevel() > 0 && amp.getLevel() < .05) {
+	        container.spinY(amp.getLevel() * 92);
+            newAmp = amp.getLevel() * 113 ;
+    } else if (amp.getLevel() > .05) {
+        container.spinY(amp.getLevel() * 139);
+        container.spinZ(amp.getLevel() * .2);
+        newAmp = amp.getLevel() * 35;
+    }
 
   // always create a new particle
-	var temp = new Rain(-2.5, 0, 2.5);
+	var temp = new Rain(-2.5, 0, 2.5, newAmp);
 
-	if (frameCount % 30 == 0) {
+	if (frameCount % 10 == 0) {
   	// add to array
   	   theRain.push( temp );
 	}
+	
   	// draw all rain
   	for (var i = 0; i < theRain.length; i++) {
   		var result = theRain[i].move();
@@ -233,45 +206,19 @@ function draw() {
   			i-=1;
   		}
   	}
-
-
-    vol = amp.getLevel() * tan(random(255));
-    volHist.push(vol);
-
-
-    if(song.isPlaying()) {
-
-      translate(width / 2, height /2);
-
-      // this is the 'shape' or the actual visualiztion
-      beginShape();
-
-      // 360 b/c our math mode is set to DEGREES
-      for (let i = 0; i < 360; i++) {
-          stroke(255, random(255), 255);
-          fill(255, .8)
-        r = map(volHist[i], 0, 1, 10, height);
-        let x = r * cos(i);
-        let y = r * sin(i);
-        vertex(x, y);
-      }
-
-      if (volHist.length > 360) {
-        volHist.splice(0, 1);
-      }
-      endShape();
-
-  }
+  	
 
 }
 
-function Rain(x,y,z) {
+function Rain(x,y,z, nAmp) {
 
+   
+    
 	// construct a new Sphere that lives at this position
 	this.mySphere = new Sphere({
 							x:x, y:y, z:z,
-							red: 0, green:0, blue:255,
-							radius: 0.5
+							red: random(255), green: random(255), blue: random(255),
+							radius: nAmp * .2
 	});
 	// add the Sphere to the world
 	world.add(this.mySphere);
@@ -282,8 +229,8 @@ function Rain(x,y,z) {
 
 	// function to move our sphere
 	this.move = function() {
-
-		var yMovement = -.2;
+        
+		var yMovement = -.3;
 
     //  amp.getLevel() *
 
@@ -300,7 +247,7 @@ function Rain(x,y,z) {
 
 
 		// take out the sphere it if hits the plane
-		if (this.mySphere.y <= -30) {
+		if (this.mySphere.y <= -27) {
 			// remove the box from the world
 			world.remove(this.mySphere);
 			return "gone";
@@ -310,3 +257,33 @@ function Rain(x,y,z) {
 		}
 	}
 }
+
+
+/*
+  courage = new DAE({
+      asset: 'courg',
+      scaleX:5,
+      scaleY:5,
+      scaleZ:5
+  });
+  world.add(courage);
+
+
+  horse = new DAE({
+      asset: 'horse_dae',
+      scaleX:5,
+      scaleY:5,
+      scaleZ:5
+  });
+  world.add(horse);
+  */
+
+/*
+  ballonsd = new DAE({
+      asset: 'balloon_dae',
+      scaleX:5.0,
+      scaleY:5.0,
+      scaleZ:5.0,
+  });
+  world.add(ballonsd);
+*/

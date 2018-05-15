@@ -3,19 +3,6 @@ function viz(song) {
     this.song = song;
    this.volHist = [];
 
-    var plane = new Plane({
-                            x:0, y:-5, z:-5,
-          					width:10, height:10,
-          					red: 255,
-                            green: 255,
-                            blue: 255,
-                            side: 'double',
-                            clickFunction: function(thePlane) {
-                               thePlane.setColor(100, 140, 50);
-                            }
-                         });
-                         //plane.rotateX(90);
-    world.add(plane)
 
    // this.background(255,0,255);
    // this.angleMode(DEGREES);
